@@ -3,7 +3,7 @@ live_config_reload = true
 
 [window]
 decorations = "none"
-opacity = 0.75
+opacity = 0.85
 dynamic_title = true
 padding = { x = 10, y = 8 }
 
@@ -23,46 +23,35 @@ blinking = "On"
 [scrolling]
 history = 10000
 
-# Tokyo Night — ULTRA VIBRANT for transparency
+# Tokyo Night — PERFECTLY SYNERGIZED
 [colors.primary]
 background = "#1a1b26"
-foreground = "#e0e8ff"  # Brighter foreground
+foreground = "#c0caf5"  # Matches the blue family
 
 [colors.cursor]
 text = "#1a1b26"
-cursor = "#00ffff"  # Bright cyan cursor
+cursor = "#bb9af7"  # Purple - complementary to blue
 
 [colors.selection]
 text = "#ffffff"
-background = "#2b325c"
+background = "#364a82"  # Blue-tinted selection
 
 [colors.normal]
-black   = "#2d3142"    # Lighter black for visibility
-red     = "#ff5370"    # Neon red
-green   = "#00ff9f"    # Electric green
-yellow  = "#ffd700"    # Gold yellow
-blue    = "#00b4ff"    # Electric blue
-magenta = "#d896ff"    # Bright magenta
-cyan    = "#00e5ff"    # Neon cyan
-white   = "#f0f0f0"    # Bright white
+black   = "#32344a"    
+red     = "#f7768e"    # Pink-red (complementary to blue-green)
+green   = "#9ece6a"    # Yellow-green (warm balance)
+yellow  = "#e0af68"    # Warm gold (contrast to cool blues)
+blue    = "#7aa2f7"    # YOUR ANCHOR COLOR ⭐
+magenta = "#bb9af7"    # Purple (analogous to blue)
+cyan    = "#7dcfff"    # Light cyan (analogous to blue)
+white   = "#c0caf5"    # Lavender (blue family)
 
 [colors.bright]
-black   = "#5a6a8a"    # Much lighter gray
-red     = "#ff6e96"    # Hot pink red
-green   = "#5fff87"    # Lime green
-yellow  = "#ffda6b"    # Bright gold
-blue    = "#50c8ff"    # Sky blue
-magenta = "#e196ff"    # Lavender purple
-cyan    = "#50fafa"    # Aqua cyan
-white   = "#ffffff"    # Pure white
-
-# Extra vibrant dim colors
-[colors.dim]
-black   = "#252736"
-red     = "#e84f6f"
-green   = "#00d787"
-yellow  = "#e5b567"
-blue    = "#32a4e7"
-magenta = "#c080ff"
-cyan    = "#00d0e5"
-white   = "#d0d5e0"
+black   = "#444b6a"    # Blue-gray
+red     = "#ff7a93"    # Brighter pink
+green   = "#b9f27c"    # Brighter yellow-green
+yellow  = "#ff9e64"    # Brighter orange-gold
+blue    = "#82aaff"    # Brighter blue (same hue family)
+magenta = "#c099ff"    # Brighter purple
+cyan    = "#89ddff"    # Brighter cyan
+white   = "#d5dcf5"    # Brighter lavender
