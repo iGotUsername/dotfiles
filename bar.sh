@@ -1,27 +1,6 @@
 #!/bin/dash
 # chadwm minimal right status: RAM | BAT | WiFi | VOL | DATE/TIME
 
-# ^c$var^ = fg color
-# ^d^     = reset to default colors
-
-# load colors
-. ~/.config/chadwm/scripts/bar_themes/tokyonight
-
-# thin separator
-sep() { printf " ^c$grey^·^d^ "; }
-
-mem() {
-  used="$(free -h | awk '/^Mem/ {print $3}' | sed 's/i//')"
-  printf "^c$blue^ ^c$white^%s%s" "$used" "^d^"
-}
-
-wlan() {
-  case "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" in
-    up)     printf "^c$blue^󰤨^d^" ;;
-    down|*) printf "^c$grey^󰤭^d^" ;;
-  esac
-}
-
 # Volume percentage + mute state (PipeWire -> Pulse -> ALSA)
 #!/bin/dash
 # chadwm status: RAM · Battery · WiFi · Volume · Time/Date (time first)
@@ -96,13 +75,6 @@ vol() {
     val="N/A"
   fi
 
-  # Icon by level (only when not muted)
-  if [ "$val" != "N/A" ] && [ "$muted" -ne 1 ]; then
-    if [ "$val" -le 50 ]; then icon="󰖀"   # medium
-    else                         icon="󰕾"   # high
-    fi
-  fi
-
   if [ "$muted" -eq 1 ]; then
     # Muted: red mute icon + greyed percentage
     printf "^c$red^󰝟 ^c$grey^%s%s" "$val" "^d^"
@@ -113,22 +85,15 @@ vol() {
   fi
 }
 
-clock() {
-  # time first: 14:05 · Thu 09 Oct
-  printf "^c$blue^󱑆 ^c$white^%s%s" "$(date '+%H:%M · %a %d %b')" "^d^"
+time_display() {
+  printf "^c$blue^󱑆 ^c$white^%s^d^" "$(date '+%H:%M')"
+}
+
+date_display() {
+  printf "^c$white^%s^d^" "$(date '+%a %d %b')"
 }
 
 while true; do
-  xsetroot -name "  $(mem)$(sep)$(battery)$(sep)$(wlan)$(sep)$(vol)$(sep)$(clock)"
-  sleep 1
-done
-
-clock() {
-  # time first: 14:05 · Thu 09 Oct
-  printf "^c$blue^󱑆 ^c$white^%s%s" "$(date '+%H:%M · %a %d %b')" "^d^"
-}
-
-while true; do
-  xsetroot -name "  $(mem)$(sep)$(battery)$(sep)$(wlan)$(sep)$(vol)$(sep)$(clock)"
+  xsetroot -name "  $(mem)$(sep)$(battery)$(sep)$(wlan)$(sep)$(vol)$(sep)$(time_display)$(sep)$(date_display)"
   sleep 1
 done
