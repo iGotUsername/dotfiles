@@ -1,0 +1,67 @@
+[general]
+live_config_reload = true
+
+[window]
+decorations = "none"
+opacity = 0.8  # Increased from 0.75 for more vibrant colors
+dynamic_title = true
+padding = { x = 10, y = 8 }
+
+[font]
+size = 8.0
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold   = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+
+[cursor]
+blink_interval = 600
+thickness = 0.15
+[cursor.style]
+shape = "Beam"
+blinking = "On"
+
+[scrolling]
+history = 10000
+
+# Tokyo Night — More Vibrant variant
+[colors.primary]
+background = "#1a1b26"
+foreground = "#c0caf5"
+
+[colors.cursor]
+text = "#1a1b26"
+cursor = "#c0caf5"
+
+[colors.selection]
+text = "#c0caf5"
+background = "#364A82"  # Brighter selection
+
+[colors.normal]
+black   = "#15161e"
+red     = "#ff5370"    # More vibrant red
+green   = "#c3e88d"    # Brighter green
+yellow  = "#ffc777"    # Punchier yellow
+blue    = "#82aaff"    # Brighter blue
+magenta = "#c099ff"    # More vibrant magenta
+cyan    = "#86e1fc"    # Brighter cyan
+white   = "#c0caf5"    # Brighter white
+
+[colors.bright]
+black   = "#4a5568"    # Lighter gray
+red     = "#ff5370"    
+green   = "#c3e88d"    
+yellow  = "#ffc777"    
+blue    = "#82aaff"    
+magenta = "#c099ff"    
+cyan    = "#86e1fc"    
+white   = "#ffffff"    # Pure white for maximum brightness
+
+[colors.dim]
+black   = "#15161e"
+red     = "#f07178"    
+green   = "#9ece6a"    
+yellow  = "#e0af68"    
+blue    = "#7aa2f7"    
+magenta = "#bb9af7"    
+cyan    = "#7dcfff"    
+white   = "#a9b1d6"

@@ -1,0 +1,19 @@
+#!/bin/dash
+
+# Tokyo Night colors for bar
+
+black="#1a1b26"
+green="#9ece6a"
+white="#c0caf5"
+grey="#414868"
+blue="#7aa2f7"
+red="#f7768e"
+darkblue="#7aa2f7"
+
+pink1="#DB9EFF";
+pink2="#C597FF";
+pink3="#AA98FF";
+pink4="#8F9FFF";
+pink5="#7BA8FA";
+pink6="#74A8F9";
+pink7="#7CA9F8";
