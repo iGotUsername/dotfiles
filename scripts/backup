@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Backup dotfiles to ~/dotfiles
+
+cp /home/herminator/.xinitrc /home/herminator/dotfiles/ && \
+cp /home/herminator/.config/alacritty/alacritty.toml /home/herminator/dotfiles/ && \
+cp /home/herminator/.config/chadwm/chadwm/config.def.h /home/herminator/dotfiles/ && \
+cp /home/herminator/.config/chadwm/chadwm/themes/tokyonight.h /home/herminator/dotfiles/ && \
+cp /home/herminator/.config/chadwm/scripts/bar.sh /home/herminator/dotfiles/ && \
+cp /home/herminator/.config/chadwm/scripts/run.sh /home/herminator/dotfiles/ && \
+cp /home/herminator/.config/chadwm/scripts/bar_themes/tokyonight /home/herminator/dotfiles/ && \
+cp /home/herminator/.config/rofi/config.rasi /home/herminator/dotfiles/ && \
+cp /home/herminator/.config/picom/picom.conf /home/herminator/dotfiles/
+
+echo "Dotfiles backed up successfully!"

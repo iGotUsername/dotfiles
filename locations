@@ -1,3 +1,5 @@
+# Locations for the dotfiles and themes
+
 ~/.xinitrc
 ~/.config/alacritty/alacritty.toml
 ~/.config/chadwm/chadwm/config.def.h
