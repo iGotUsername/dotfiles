@@ -51,19 +51,19 @@ static const char *colors[][3]      = {
     [TabSel]           = { blue,    gray2,  black },
     [TabNorm]          = { gray3,   black,  black },
     [SchemeTag]        = { gray2,   black,  black },
-    [SchemeTag1]       = { pink1,   black,  black },
-    [SchemeTag2]       = { pink2,   black,  black },
-    [SchemeTag3]       = { pink3,   black,  black },
-    [SchemeTag4]       = { pink4,   black,  black },
-    [SchemeTag5]       = { pink5,   black,  black },
-    [SchemeLayout]     = { pink6,   black,  black },
-    [SchemeBtnPrev]    = { pink7,   black,  black },
+    [SchemeTag1]       = { gray3,   black,  black },
+    [SchemeTag2]       = { gray3,   black,  black },
+    [SchemeTag3]       = { gray3,   black,  black },
+    [SchemeTag4]       = { gray3,   black,  black },
+    [SchemeTag5]       = { gray3,   black,  black },
+    [SchemeLayout]     = { gray3,   black,  black },
+    [SchemeBtnPrev]    = { gray3,   black,  black },
     [SchemeBtnNext]    = { yellow,  black,  black },
     [SchemeBtnClose]   = { red,     black,  black },
 };
 
 /* tagging */
-static char *tags[] = {"󰣨", "", "", "", ""};
+static char *tags[] = {"󰣨", "", "", "", ""};
 
 static const char* eww[] = { "eww", "-c", "/home/siduck/.config/chadwm/eww", "open" , "eww", NULL };
 
