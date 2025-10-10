@@ -11,12 +11,3 @@ static const char yellow[]      = "#e0af68";
 static const char blue2[]       = "#46B3B9";
 static const char col_borderbar[]  = "#1a1b26"; // inner border
 static const char white[]       = "#c0caf5";
-
-// for the icons on the bar
-static const char pink1[] = "#DB9EFF";
-static const char pink2[] = "#C597FF";
-static const char pink3[] = "#AA98FF";
-static const char pink4[] = "#8F9FFF";
-static const char pink5[] = "#7BA8FA";
-static const char pink6[] = "#74A8F9";
-static const char pink7[] = "#7CA9F8";
