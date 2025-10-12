@@ -2,268 +2,287 @@
 
 #include <X11/XF86keysym.h>
 
-/* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int default_border = 0;   /* to switch back to default border after dynamic border resizing via keybinds */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int gappih    = 7;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 7;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 7;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 7;       /* vert outer gap between windows and screen edge */
-static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
-static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayspacing = 8;   /* systray spacing */
-static const unsigned int systrayiconsize = 20; /* systray icon size in px */
-static const int systraypinningfailfirst = 1;   /* 1: if pinning fails,display systray on the 1st monitor,False: display systray on last monitor*/
-static const int showsystray        = 1;        /* 0 means no systray */
-static const int showbar            = 1;        /* 0 means no bar */
+/* ========================================
+ * APPEARANCE
+ * ======================================== */
+
+/* Window Borders & Gaps */
+static const unsigned int borderpx  = 0;        /* Border width around windows */
+static const unsigned int default_border = 0;   /* Default border to revert to */
+static const unsigned int snap      = 32;       /* Snap pixel threshold */
+static const unsigned int gappih    = 7;        /* Horizontal inner gap between windows */
+static const unsigned int gappiv    = 7;        /* Vertical inner gap between windows */
+static const unsigned int gappoh    = 7;        /* Horizontal outer gap (screen edge) */
+static const unsigned int gappov    = 7;        /* Vertical outer gap (screen edge) */
+static const int smartgaps          = 0;        /* 1 = no outer gap with single window */
+
+/* System Tray */
+static const unsigned int systraypinning = 0;   /* 0 = follow selected monitor, >0 = pin to monitor X */
+static const unsigned int systrayspacing = 8;   /* Space between tray icons */
+static const unsigned int systrayiconsize = 20; /* Tray icon size in pixels */
+static const int systraypinningfailfirst = 1;   /* 1 = fallback to first monitor, 0 = last monitor */
+static const int showsystray        = 1;        /* 0 = hide systray */
+
+/* Status Bar */
+static const int showbar            = 1;        /* 0 = hide bar */
 static const int showtab            = showtab_auto;
-static const int toptab             = 1;        /* 0 means bottom tab */
-static const int floatbar           = 1;        /* 1 means the bar will float(don't have padding),0 means the bar have padding */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const int horizpadbar        = 20;
-static const int vertpadbar         = 11;
-static const int vertpadtab         = 35;
-static const int horizpadtabi       = 15;
-static const int horizpadtabo       = 15;
-static const int scalepreview       = 4;
-static const int tag_preview        = 0;        /* 1 means enable, 0 is off */
-static const int colorfultag        = 1;        /* 0 means use SchemeSel for selected non vacant tag */
+static const int toptab             = 1;        /* 0 = bottom tab bar */
+static const int floatbar           = 1;        /* 1 = floating bar (no padding) */
+static const int topbar             = 1;        /* 0 = bottom bar */
+static const int horizpadbar        = 20;       /* Horizontal bar padding */
+static const int vertpadbar         = 11;       /* Vertical bar padding */
+static const int vertpadtab         = 35;       /* Vertical tab padding */
+static const int horizpadtabi       = 15;       /* Horizontal inner tab padding */
+static const int horizpadtabo       = 15;       /* Horizontal outer tab padding */
+static const int scalepreview       = 4;        /* Tag preview scaling factor */
+static const int tag_preview        = 0;        /* 1 = enable tag previews */
+static const int colorfultag        = 1;        /* 0 = use SchemeSel for all active tags */
+
+/* Hardware Control Paths */
 static const char *light_up[]   = { "/usr/bin/brightnessctl", "set", "5%+", NULL };
 static const char *light_down[] = { "/usr/bin/brightnessctl", "set", "5%-", NULL };
-static const int new_window_attach_on_end = 0; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
-#define ICONSIZE 19   /* icon size */
-#define ICONSPACING 10 /* space between icon and title */
 
-static const char *fonts[]          = {"Iosevka:style:medium:size=11" ,"JetBrainsMono Nerd Font Mono:style:medium:size=21" };
+/* Window Behavior */
+static const int new_window_attach_on_end = 0;  /* 1 = new windows attach at end, 0 = at front */
 
-// theme
-#include "themes/tokyonight.h"
+/* Icon Settings */
+#define ICONSIZE 19       /* Window icon size */
+#define ICONSPACING 10    /* Space between icon and title */
 
-static const char *colors[][3]      = {
-    /*                     fg       bg      border */
-    [SchemeNorm]       = { gray3,   black,  gray2 },
-    [SchemeSel]        = { gray4,   blue,   gray3  },
-    [SchemeTitle]      = { white,   black,  black }, // active window title
-    [TabSel]           = { blue,    gray2,  black },
-    [TabNorm]          = { gray3,   black,  black },
-    [SchemeTag]        = { gray2,   black,  black },
-    [SchemeTag1]       = { gray3,   black,  black },
-    [SchemeTag2]       = { gray3,   black,  black },
-    [SchemeTag3]       = { gray3,   black,  black },
-    [SchemeTag4]       = { gray3,   black,  black },
-    [SchemeTag5]       = { gray3,   black,  black },
-    [SchemeLayout]     = { gray3,   black,  black },
-    [SchemeBtnPrev]    = { gray3,   black,  black },
-    [SchemeBtnNext]    = { yellow,  black,  black },
-    [SchemeBtnClose]   = { red,     black,  black },
+/* Font */
+static const char *fonts[] = {
+    "Iosevka:style:medium:size=11",
+    "JetBrainsMono Nerd Font Mono:style:medium:size=21"
 };
 
-/* tagging */
+/* ========================================
+ * COLORS (Tokyo Night Theme)
+ * ======================================== */
+
+#include "themes/tokyonight.h"
+
+static const char *colors[][3] = {
+    /*                     fg       bg      border */
+    [SchemeNorm]       = { gray3,   black,  gray2 },     /* Unfocused windows */
+    [SchemeSel]        = { gray4,   blue,   gray3 },     /* Focused window */
+    [SchemeTitle]      = { white,   black,  black },     /* Active window title */
+    [TabSel]           = { blue,    gray2,  black },     /* Selected tab */
+    [TabNorm]          = { gray3,   black,  black },     /* Normal tab */
+    [SchemeTag]        = { gray2,   black,  black },     /* Tag base */
+    [SchemeTag1]       = { gray3,   black,  black },     /* Tag 1 */
+    [SchemeTag2]       = { gray3,   black,  black },     /* Tag 2 */
+    [SchemeTag3]       = { gray3,   black,  black },     /* Tag 3 */
+    [SchemeTag4]       = { gray3,   black,  black },     /* Tag 4 */
+    [SchemeTag5]       = { gray3,   black,  black },     /* Tag 5 */
+    [SchemeLayout]     = { gray3,   black,  black },     /* Layout indicator */
+    [SchemeBtnPrev]    = { gray3,   black,  black },     /* Previous button */
+    [SchemeBtnNext]    = { yellow,  black,  black },     /* Next button */
+    [SchemeBtnClose]   = { red,     black,  black },     /* Close button */
+};
+
+/* ========================================
+ * WORKSPACES (Tags)
+ * ======================================== */
+
 static char *tags[] = {"󰣨", "", "", "", ""};
 
-/* ============================================
- * Launcher Definitions (Status Bar Buttons)
- * ============================================
- * No external launchers - using bar.sh script
- * ------------------------------------------ */
-
 static const Launcher launchers[] = {
-    /* Empty - no clickable bar buttons needed */
+    /* No external launchers - using bar.sh script */
+    { NULL } /* Dummy element to prevent empty array */
 };
 
 static const int tagschemes[] = {
     SchemeTag1, SchemeTag2, SchemeTag3, SchemeTag4, SchemeTag5
 };
 
-static const unsigned int ulinepad      = 5; /* horizontal padding between the underline and tag */
-static const unsigned int ulinestroke   = 2; /* thickness / height of the underline */
-static const unsigned int ulinevoffset  = 0; /* how far above the bottom of the bar the line should appear */
-static const int ulineall               = 0; /* 1 to show underline on all tags, 0 for just the active ones */
+/* Tag Underline Styling */
+static const unsigned int ulinepad      = 5;  /* Padding between underline and tag */
+static const unsigned int ulinestroke   = 2;  /* Underline thickness */
+static const unsigned int ulinevoffset  = 0;  /* Vertical offset from bar bottom */
+static const int ulineall               = 0;  /* 1 = underline all tags, 0 = active only */
 
-/* ============================================
- * Window Rules
- * ============================================
- * Configure how specific applications behave
+/* ========================================
+ * WINDOW RULES
  * Format: { "class", "instance", "title", tags_mask, iscentered, isfloating, monitor }
  * 
- * - tags_mask: Which workspace (0 = current, 1<<0 = tag1, 1<<1 = tag2, etc.)
- * - iscentered: 1 = center on screen, 0 = normal placement
- * - isfloating: 1 = floating window, 0 = tiled
- * - monitor: -1 = current monitor, 0+ = specific monitor
+ * - tags_mask: 0 = current, 1<<0 = tag1, 1<<1 = tag2, etc.
+ * - iscentered: 1 = center window, 0 = normal placement
+ * - isfloating: 1 = floating, 0 = tiled
+ * - monitor: -1 = current, 0+ = specific monitor
  * 
- * Use `xprop` and click a window to find its WM_CLASS
- * ------------------------------------------ */
+ * Use `xprop` to find window class/instance
+ * ======================================== */
 
 static const Rule rules[] = {
-    /* class         instance    title       tags mask     iscentered   isfloating   monitor */
-    { "Gimp",        NULL,       NULL,       0,            0,           1,           -1 },  // GIMP always floats
-    { "Firefox",     NULL,       NULL,       1 << 8,       0,           0,           -1 },  // Firefox on tag 9
-    { "mpv",         NULL,       NULL,       0,            1,           1,           -1 },  // Media player floats centered
-    { "feh",         NULL,       NULL,       0,            1,           1,           -1 },  // Image viewer floats centered
+    /* class         instance    title       tags mask     centered   floating   monitor */
+    { "Gimp",        NULL,       NULL,       0,            0,         1,         -1 },
+    { "Firefox",     NULL,       NULL,       1 << 8,       0,         0,         -1 },
+    { "mpv",         NULL,       NULL,       0,            1,         1,         -1 },
+    { "feh",         NULL,       NULL,       0,            1,         1,         -1 },
 };
 
-/* layout(s) */
-static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+/* ========================================
+ * LAYOUTS
+ * ======================================== */
 
-#define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
+static const float mfact     = 0.50;  /* Master area size ratio [0.05..0.95] */
+static const int nmaster     = 1;     /* Number of clients in master area */
+static const int resizehints = 0;     /* 1 = respect size hints in tiled mode */
+static const int lockfullscreen = 1;  /* 1 = force focus on fullscreen window */
+
+#define FORCE_VSPLIT 1  /* Force vertical split for 2 clients in nrowgrid */
 #include "functions.h"
-
 
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    { "[]=",      tile },    /* first entry is default */
-    { "[M]",      monocle },
-    { "[@]",      spiral },
-    { "[\\]",     dwindle },
-    { "H[]",      deck },
-    { "TTT",      bstack },
-    { "===",      bstackhoriz },
-    { "HHH",      grid },
-    { "###",      nrowgrid },
-    { "---",      horizgrid },
-    { ":::",      gaplessgrid },
-    { "|M|",      centeredmaster },
-    { ">M>",      centeredfloatingmaster },
-    { "><>",      NULL },    /* no layout function means floating behavior */
+    { "[]=",      tile },                    /* Master + stack */
+    { "[M]",      monocle },                 /* All windows fullscreen */
+    { "[@]",      spiral },                  /* Fibonacci spiral */
+    { "[\\]",     dwindle },                 /* Fibonacci dwindle */
+    { "H[]",      deck },                    /* Master + deck */
+    { "TTT",      bstack },                  /* Bottom stack */
+    { "===",      bstackhoriz },             /* Horizontal bottom stack */
+    { "HHH",      grid },                    /* Grid layout */
+    { "###",      nrowgrid },                /* N-row grid */
+    { "---",      horizgrid },               /* Horizontal grid */
+    { ":::",      gaplessgrid },             /* Gapless grid */
+    { "|M|",      centeredmaster },          /* Centered master */
+    { ">M>",      centeredfloatingmaster },  /* Centered floating master */
+    { "><>",      NULL },                    /* Floating mode */
     { NULL,       NULL },
 };
 
-/* key definitions */
-#define MODKEY Mod4Mask
+/* ========================================
+ * KEYBINDINGS
+ * ======================================== */
+
+#define MODKEY Mod4Mask  /* Super/Windows key */
+
+/* Tag switching macro */
 #define TAGKEYS(KEY,TAG) \
     { MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
     { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
     { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
     { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+/* Shell command helper */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-/* commands */
-
 static const Key keys[] = {
-    /* modifier                         key         function        argument */
+    /* modifier                     key                         function        argument */
 
-    // brightness and audio 
-  {0,       XF86XK_AudioRaiseVolume,  spawn, SHCMD("wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+") },
-  {0,       XF86XK_AudioLowerVolume,  spawn, SHCMD("wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-") },
-  {0,       XF86XK_AudioMute,         spawn, SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
-	{0,				XF86XK_MonBrightnessUp,   spawn,	{.v = light_up}},
-	{0,				XF86XK_MonBrightnessDown, spawn,	{.v = light_down}},
+    /* Hardware Controls (Laptop Function Keys) */
+    { 0, XF86XK_AudioRaiseVolume,  spawn, SHCMD("wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+") },
+    { 0, XF86XK_AudioLowerVolume,  spawn, SHCMD("wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-") },
+    { 0, XF86XK_AudioMute,         spawn, SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
+    { 0, XF86XK_MonBrightnessUp,   spawn, {.v = light_up} },
+    { 0, XF86XK_MonBrightnessDown, spawn, {.v = light_down} },
 
-    // screenshot fullscreen and cropped
-    {MODKEY|ControlMask,                XK_u,       spawn,
-        SHCMD("maim | xclip -selection clipboard -t image/png")},
-    {MODKEY,                            XK_u,       spawn,
-        SHCMD("maim --select | xclip -selection clipboard -t image/png")},
+    /* Screenshots */
+    { MODKEY|ControlMask, XK_u, spawn, SHCMD("maim | xclip -selection clipboard -t image/png") },          /* Fullscreen */
+    { MODKEY,             XK_u, spawn, SHCMD("maim --select | xclip -selection clipboard -t image/png") }, /* Selection */
 
-    { MODKEY,                           XK_c,       spawn,          SHCMD("rofi -show drun") },
-    { MODKEY,                           XK_Return,  spawn,          SHCMD("alacritty")},
+    /* Application Launchers */
+    { MODKEY, XK_c,      spawn, SHCMD("rofi -show drun") },  /* App launcher */
+    { MODKEY, XK_Return, spawn, SHCMD("alacritty") },        /* Terminal */
 
-    // toggle stuff
-    { MODKEY,                           XK_b,       togglebar,      {0} },
-    { MODKEY|ControlMask,               XK_t,       togglegaps,     {0} },
-    { MODKEY|ShiftMask,                 XK_space,   togglefloating, {0} },
-    { MODKEY,                           XK_f,       togglefullscr,  {0} },
+    /* Window/Bar Toggles */
+    { MODKEY,              XK_b,     togglebar,      {0} },            /* Toggle status bar */
+    { MODKEY|ControlMask,  XK_t,     togglegaps,     {0} },            /* Toggle gaps */
+    { MODKEY|ShiftMask,    XK_space, togglefloating, {0} },            /* Toggle floating */
+    { MODKEY,              XK_f,     togglefullscr,  {0} },            /* Toggle fullscreen */
 
-    { MODKEY|ControlMask,               XK_w,       tabmode,        { -1 } },
-    { MODKEY,                           XK_j,       focusstack,     {.i = +1 } },
-    { MODKEY,                           XK_k,       focusstack,     {.i = -1 } },
-    { MODKEY,                           XK_i,       incnmaster,     {.i = +1 } },
-    { MODKEY,                           XK_d,       incnmaster,     {.i = -1 } },
+    /* Window Focus */
+    { MODKEY|ControlMask, XK_w, tabmode,     { -1 } },      /* Tab mode */
+    { MODKEY,             XK_j, focusstack,  {.i = +1 } },  /* Focus next window */
+    { MODKEY,             XK_k, focusstack,  {.i = -1 } },  /* Focus previous window */
+    { MODKEY,             XK_i, incnmaster,  {.i = +1 } },  /* Increase master count */
+    { MODKEY,             XK_d, incnmaster,  {.i = -1 } },  /* Decrease master count */
 
-    // shift view
-    { MODKEY,                           XK_Left,    shiftview,      {.i = -1 } },
-    { MODKEY,                           XK_Right,   shiftview,      {.i = +1 } },
+    /* Workspace Navigation */
+    { MODKEY, XK_Left,  shiftview, {.i = -1 } },  /* Previous tag */
+    { MODKEY, XK_Right, shiftview, {.i = +1 } },  /* Next tag */
 
-    // change m,cfact sizes 
-    { MODKEY,                           XK_h,       setmfact,       {.f = -0.05} },
-    { MODKEY,                           XK_l,       setmfact,       {.f = +0.05} },
-    { MODKEY|ShiftMask,                 XK_h,       setcfact,       {.f = +0.25} },
-    { MODKEY|ShiftMask,                 XK_l,       setcfact,       {.f = -0.25} },
-    { MODKEY|ShiftMask,                 XK_o,       setcfact,       {.f =  0.00} },
+    /* Master/Client Area Sizing */
+    { MODKEY,              XK_h, setmfact, {.f = -0.05} },  /* Shrink master */
+    { MODKEY,              XK_l, setmfact, {.f = +0.05} },  /* Grow master */
+    { MODKEY|ShiftMask,    XK_h, setcfact, {.f = +0.25} },  /* Grow client */
+    { MODKEY|ShiftMask,    XK_l, setcfact, {.f = -0.25} },  /* Shrink client */
+    { MODKEY|ShiftMask,    XK_o, setcfact, {.f =  0.00} },  /* Reset client size */
 
+    /* Window Stack Movement */
+    { MODKEY|ShiftMask, XK_j,      movestack, {.i = +1 } },  /* Move window down */
+    { MODKEY|ShiftMask, XK_k,      movestack, {.i = -1 } },  /* Move window up */
+    { MODKEY|ShiftMask, XK_Return, zoom,      {0} },         /* Swap with master */
+    { MODKEY,           XK_Tab,    view,      {0} },         /* Toggle last tag */
 
-    { MODKEY|ShiftMask,                 XK_j,       movestack,      {.i = +1 } },
-    { MODKEY|ShiftMask,                 XK_k,       movestack,      {.i = -1 } },
-    { MODKEY|ShiftMask,                 XK_Return,  zoom,           {0} },
-    { MODKEY,                           XK_Tab,     view,           {0} },
+    /* Gap Adjustments */
+    { MODKEY|ControlMask,           XK_i, incrgaps,  {.i = +1 } },  /* Increase all gaps */
+    { MODKEY|ControlMask,           XK_d, incrgaps,  {.i = -1 } },  /* Decrease all gaps */
+    { MODKEY|ShiftMask,             XK_i, incrigaps, {.i = +1 } },  /* Increase inner gaps */
+    { MODKEY|ControlMask|ShiftMask, XK_i, incrigaps, {.i = -1 } },  /* Decrease inner gaps */
+    { MODKEY|ControlMask,           XK_o, incrogaps, {.i = +1 } },  /* Increase outer gaps */
+    { MODKEY|ControlMask|ShiftMask, XK_o, incrogaps, {.i = -1 } },  /* Decrease outer gaps */
 
-    // overall gaps
-    { MODKEY|ControlMask,               XK_i,       incrgaps,       {.i = +1 } },
-    { MODKEY|ControlMask,               XK_d,       incrgaps,       {.i = -1 } },
+    /* Directional Gap Adjustments */
+    { MODKEY|ControlMask,           XK_6, incrihgaps, {.i = +1 } },  /* Inner horizontal + */
+    { MODKEY|ControlMask|ShiftMask, XK_6, incrihgaps, {.i = -1 } },  /* Inner horizontal - */
+    { MODKEY|ControlMask,           XK_7, incrivgaps, {.i = +1 } },  /* Inner vertical + */
+    { MODKEY|ControlMask|ShiftMask, XK_7, incrivgaps, {.i = -1 } },  /* Inner vertical - */
+    { MODKEY|ControlMask,           XK_8, incrohgaps, {.i = +1 } },  /* Outer horizontal + */
+    { MODKEY|ControlMask|ShiftMask, XK_8, incrohgaps, {.i = -1 } },  /* Outer horizontal - */
+    { MODKEY|ControlMask,           XK_9, incrovgaps, {.i = +1 } },  /* Outer vertical + */
+    { MODKEY|ControlMask|ShiftMask, XK_9, incrovgaps, {.i = -1 } },  /* Outer vertical - */
+    { MODKEY|ControlMask|ShiftMask, XK_d, defaultgaps, {0} },        /* Reset to default gaps */
 
-    // inner gaps
-    { MODKEY|ShiftMask,                 XK_i,       incrigaps,      {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_i,       incrigaps,      {.i = -1 } },
+    /* Layout Selection */
+    { MODKEY,                       XK_t,      setlayout, {.v = &layouts[0]} },   /* Tile */
+    { MODKEY|ShiftMask,             XK_f,      setlayout, {.v = &layouts[1]} },   /* Monocle */
+    { MODKEY,                       XK_m,      setlayout, {.v = &layouts[2]} },   /* Spiral */
+    { MODKEY|ControlMask,           XK_g,      setlayout, {.v = &layouts[10]} },  /* Gapless grid */
+    { MODKEY|ControlMask|ShiftMask, XK_t,      setlayout, {.v = &layouts[13]} },  /* Floating */
+    { MODKEY,                       XK_space,  setlayout, {0} },                  /* Toggle last layout */
+    { MODKEY|ControlMask,           XK_comma,  cyclelayout, {.i = -1 } },         /* Previous layout */
+    { MODKEY|ControlMask,           XK_period, cyclelayout, {.i = +1 } },         /* Next layout */
 
-    // outer gaps
-    { MODKEY|ControlMask,               XK_o,       incrogaps,      {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_o,       incrogaps,      {.i = -1 } },
+    /* Multi-Monitor */
+    { MODKEY,              XK_0,      view,     {.ui = ~0 } },   /* View all tags */
+    { MODKEY|ShiftMask,    XK_0,      tag,      {.ui = ~0 } },   /* Tag on all */
+    { MODKEY,              XK_comma,  focusmon, {.i = -1 } },    /* Focus previous monitor */
+    { MODKEY,              XK_period, focusmon, {.i = +1 } },    /* Focus next monitor */
+    { MODKEY|ShiftMask,    XK_comma,  tagmon,   {.i = -1 } },    /* Send to previous monitor */
+    { MODKEY|ShiftMask,    XK_period, tagmon,   {.i = +1 } },    /* Send to next monitor */
 
-    // inner+outer hori, vert gaps 
-    { MODKEY|ControlMask,               XK_6,       incrihgaps,     {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_6,       incrihgaps,     {.i = -1 } },
-    { MODKEY|ControlMask,               XK_7,       incrivgaps,     {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_7,       incrivgaps,     {.i = -1 } },
-    { MODKEY|ControlMask,               XK_8,       incrohgaps,     {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_8,       incrohgaps,     {.i = -1 } },
-    { MODKEY|ControlMask,               XK_9,       incrovgaps,     {.i = +1 } },
-    { MODKEY|ControlMask|ShiftMask,     XK_9,       incrovgaps,     {.i = -1 } },
+    /* Border Size */
+    { MODKEY|ShiftMask, XK_minus, setborderpx, {.i = -1 } },            /* Decrease border */
+    { MODKEY|ShiftMask, XK_p,     setborderpx, {.i = +1 } },            /* Increase border */
+    { MODKEY|ShiftMask, XK_w,     setborderpx, {.i = default_border } }, /* Reset border */
 
-    { MODKEY|ControlMask|ShiftMask,     XK_d,       defaultgaps,    {0} },
+    /* System Controls */
+    { MODKEY|ControlMask, XK_q, spawn,   SHCMD("killall bar.sh chadwm") },  /* Quit DWM */
+    { MODKEY,             XK_q, killclient, {0} },                           /* Close window */
+    { MODKEY|ShiftMask,   XK_r, restart,    {0} },                           /* Restart DWM */
 
-    // layout
-    { MODKEY,                           XK_t,       setlayout,      {.v = &layouts[0]} },
-    { MODKEY|ShiftMask,                 XK_f,       setlayout,      {.v = &layouts[1]} },
-    { MODKEY,                           XK_m,       setlayout,      {.v = &layouts[2]} },
-    { MODKEY|ControlMask,               XK_g,       setlayout,      {.v = &layouts[10]} },
-    { MODKEY|ControlMask|ShiftMask,     XK_t,       setlayout,      {.v = &layouts[13]} },
-    { MODKEY,                           XK_space,   setlayout,      {0} },
-    { MODKEY|ControlMask,               XK_comma,   cyclelayout,    {.i = -1 } },
-    { MODKEY|ControlMask,               XK_period,  cyclelayout,    {.i = +1 } },
-    { MODKEY,                           XK_0,       view,           {.ui = ~0 } },
-    { MODKEY|ShiftMask,                 XK_0,       tag,            {.ui = ~0 } },
-    { MODKEY,                           XK_comma,   focusmon,       {.i = -1 } },
-    { MODKEY,                           XK_period,  focusmon,       {.i = +1 } },
-    { MODKEY|ShiftMask,                 XK_comma,   tagmon,         {.i = -1 } },
-    { MODKEY|ShiftMask,                 XK_period,  tagmon,         {.i = +1 } },
+    /* Window Hiding (Scratchpad) */
+    { MODKEY,          XK_e, hidewin,    {0} },  /* Hide window */
+    { MODKEY|ShiftMask, XK_e, restorewin, {0} },  /* Restore hidden window */
 
-    // change border size
-    { MODKEY|ShiftMask,                 XK_minus,   setborderpx,    {.i = -1 } },
-    { MODKEY|ShiftMask,                 XK_p,       setborderpx,    {.i = +1 } },
-    { MODKEY|ShiftMask,                 XK_w,       setborderpx,    {.i = default_border } },
-
-    // kill dwm
-    { MODKEY|ControlMask,               XK_q,       spawn,        SHCMD("killall bar.sh chadwm") },
-
-    // kill window
-    { MODKEY,                           XK_q,       killclient,     {0} },
-
-    // restart
-    { MODKEY|ShiftMask,                 XK_r,       restart,           {0} },
-
-    // hide & restore windows
-    { MODKEY,                           XK_e,       hidewin,        {0} },
-    { MODKEY|ShiftMask,                 XK_e,       restorewin,     {0} },
-
-    TAGKEYS(                            XK_1,                       0)
-    TAGKEYS(                            XK_2,                       1)
-    TAGKEYS(                            XK_3,                       2)
-    TAGKEYS(                            XK_4,                       3)
-    TAGKEYS(                            XK_5,                       4)
-    TAGKEYS(                            XK_6,                       5)
-    TAGKEYS(                            XK_7,                       6)
-    TAGKEYS(                            XK_8,                       7)
-    TAGKEYS(                            XK_9,                       8)
+    /* Workspace (Tag) Keybinds */
+    TAGKEYS(XK_1, 0)
+    TAGKEYS(XK_2, 1)
+    TAGKEYS(XK_3, 2)
+    TAGKEYS(XK_4, 3)
+    TAGKEYS(XK_5, 4)
+    TAGKEYS(XK_6, 5)
+    TAGKEYS(XK_7, 6)
+    TAGKEYS(XK_8, 7)
+    TAGKEYS(XK_9, 8)
 };
 
-/* button definitions */
-/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+/* ========================================
+ * MOUSE BINDINGS
+ * ======================================== */
+
 static const Button buttons[] = {
     /* click                event mask      button          function        argument */
     { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
@@ -271,29 +290,25 @@ static const Button buttons[] = {
     { ClkWinTitle,          0,              Button2,        zoom,           {0} },
     { ClkStatusText,        0,              Button2,        spawn,          SHCMD("st") },
 
-    /* Keep movemouse? */
-    /* { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} }, */
-
-    /* placemouse options, choose which feels more natural:
-    *    0 - tiled position is relative to mouse cursor
-    *    1 - tiled position is relative to window center
-    *    2 - mouse pointer warps to window center
-    *
-    * The moveorplace uses movemouse or placemouse depending on the floating state
-    * of the selected client. Set up individual keybindings for the two if you want
-    * to control these separately (i.e. to retain the feature to move a tiled window
-    * into a floating position).
-    */
+    /* Window Dragging/Resizing
+     * placemouse modes:
+     *   0 = tiled position relative to cursor
+     *   1 = tiled position relative to window center
+     *   2 = cursor warps to window center
+     */
     { ClkClientWin,         MODKEY,         Button1,        moveorplace,    {.i = 0} },
     { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
     { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
     { ClkClientWin,         ControlMask,    Button1,        dragmfact,      {0} },
     { ClkClientWin,         ControlMask,    Button3,        dragcfact,      {0} },
+
+    /* Tag Bar Clicks */
     { ClkTagBar,            0,              Button1,        view,           {0} },
     { ClkTagBar,            0,              Button3,        toggleview,     {0} },
     { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
     { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
-    { ClkTabBar,            0,              Button1,        focuswin,       {0} },
+
+    /* Tab Bar Controls */
     { ClkTabBar,            0,              Button1,        focuswin,       {0} },
     { ClkTabPrev,           0,              Button1,        movestack,      { .i = -1 } },
     { ClkTabNext,           0,              Button1,        movestack,      { .i = +1 } },
