@@ -62,11 +62,14 @@ static const char *colors[][3]      = {
 /* tagging */
 static char *tags[] = {"󰣨", "", "", "", ""};
 
-static const char* eww[] = { "eww", "-c", "/home/herminator/.config/eww", "open" , "eww", NULL };
+/* ============================================
+ * Launcher Definitions (Status Bar Buttons)
+ * ============================================
+ * No external launchers - using bar.sh script
+ * ------------------------------------------ */
 
 static const Launcher launchers[] = {
-    /* command     name to display */
-    { eww,         "" },
+    /* Empty - no clickable bar buttons needed */
 };
 
 static const int tagschemes[] = {
@@ -86,7 +89,6 @@ static const Rule rules[] = {
     /* class      instance    title       tags mask     iscentered   isfloating   monitor */
     { "Gimp",     NULL,       NULL,       0,            0,           1,           -1 },
     { "Firefox",  NULL,       NULL,       1 << 8,       0,           0,           -1 },
-    { "eww",      NULL,       NULL,       0,            0,           1,           -1 },
 };
 
 /* layout(s) */
