@@ -98,7 +98,21 @@ date_display() {
 }
 
 # Update loop (refresh every second)
+counter=0
 while true; do
-  xsetroot -name "  $(mem)$(sep)$(battery)$(sep)$(wlan)$(sep)$(vol)$(sep)$(time_display)$(sep)$(date_display)"
+  # Update fast-changing items every loop
+  time_str="$(time_display)"
+  vol_str="$(vol)"
+  
+  # Update slow-changing items every 5 seconds
+  if [ $((counter % 5)) -eq 0 ]; then
+    mem_str="$(mem)"
+    bat_str="$(battery)"
+    wifi_str="$(wlan)"
+  fi
+  
+  xsetroot -name "  ${mem_str}$(sep)${bat_str}$(sep)${wifi_str}$(sep)${vol_str}$(sep)${time_str}$(sep)$(date_display)" 2>/dev/null
+  
+  counter=$((counter + 1))
   sleep 1
 done
