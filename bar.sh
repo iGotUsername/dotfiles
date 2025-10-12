@@ -2,7 +2,6 @@
 # chadwm minimal right status: RAM | BAT | WiFi | VOL | DATE/TIME
 
 # Volume percentage + mute state (PipeWire -> Pulse -> ALSA)
-#!/bin/dash
 # chadwm status: RAM · Battery · WiFi · Volume · Time/Date (time first)
 # no background blocks; tokyonight accents; clear mute icon
 # requires a Nerd Font for the icons
@@ -64,13 +63,6 @@ vol() {
     out="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null)"
     val=$(printf "%s" "$out" | awk '{print int($2*100)}')
     printf "%s" "$out" | grep -q '\[MUTED\]' && muted=1
-  elif command -v pamixer >/dev/null 2>&1; then
-    val="$(pamixer --get-volume 2>/dev/null)"
-    [ "$(pamixer --get-mute 2>/dev/null)" = "true" ] && muted=1
-  elif command -v amixer >/dev/null 2>&1; then
-    line="$(amixer get Master | tail -n1)"
-    val=$(printf "%s" "$line" | awk -F'[][]' '{print $2}' | tr -d '%')
-    [ "$(printf "%s" "$line" | awk -F'[][]' '{print $4}')" = "off" ] && muted=1
   else
     val="N/A"
   fi

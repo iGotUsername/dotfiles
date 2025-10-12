@@ -24,7 +24,6 @@ window {
     border-radius: 12px;
     width: 28%;
     padding: 0;
-    transparency: "real";
 }
 
 mainbox {
