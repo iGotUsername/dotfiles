@@ -52,38 +52,20 @@ wlan() {
   esac
 }
 
-# Volume with mute detection (PipeWire → PulseAudio → ALSA fallback)
+# Volume with mute detection wpctl
+
 vol() {
-  icon="󰕾"
-  val="0"; muted=0
-
-  # Try wpctl (PipeWire/WirePlumber)
-  if command -v wpctl >/dev/null 2>&1; then
-    out="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null)"
-    val=$(printf "%s" "$out" | awk '{print int($2*100)}')
-    printf "%s" "$out" | grep -q '\[MUTED\]' && muted=1
-
-  # Fallback to pamixer (PulseAudio)
-  elif command -v pamixer >/dev/null 2>&1; then
-    val="$(pamixer --get-volume 2>/dev/null)"
-    [ "$(pamixer --get-mute 2>/dev/null)" = "true" ] && muted=1
-
-  # Fallback to amixer (ALSA)
-  elif command -v amixer >/dev/null 2>&1; then
-    line="$(amixer get Master | tail -n1)"
-    val=$(printf "%s" "$line" | awk -F'[][]' '{print $2}' | tr -d '%')
-    [ "$(printf "%s" "$line" | awk -F'[][]' '{print $4}')" = "off" ] && muted=1
-
-  else
-    val="N/A"
-  fi
-
-  # Display muted or active volume
-  if [ "$muted" -eq 1 ]; then
+  out="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null)" || {
+    printf "^c$grey^󰝟 ^c$grey^N/A^d^"
+    return
+  }
+  
+  val=$(printf "%s" "$out" | awk '{print int($2*100)}')
+  
+  if printf "%s" "$out" | grep -q '\[MUTED\]'; then
     printf "^c$red^󰝟 ^c$grey^%s%s" "$val" "^d^"
   else
-    volcol="${magenta:-$blue}"
-    printf "^c$volcol^%s ^c$white^%s%s" "$icon" "$val" "^d^"
+    printf "^c$blue^󰕾 ^c$white^%s%s" "$val" "^d^"
   fi
 }
 
