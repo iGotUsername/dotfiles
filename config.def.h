@@ -81,14 +81,26 @@ static const unsigned int ulinestroke   = 2; /* thickness / height of the underl
 static const unsigned int ulinevoffset  = 0; /* how far above the bottom of the bar the line should appear */
 static const int ulineall               = 0; /* 1 to show underline on all tags, 0 for just the active ones */
 
+/* ============================================
+ * Window Rules
+ * ============================================
+ * Configure how specific applications behave
+ * Format: { "class", "instance", "title", tags_mask, iscentered, isfloating, monitor }
+ * 
+ * - tags_mask: Which workspace (0 = current, 1<<0 = tag1, 1<<1 = tag2, etc.)
+ * - iscentered: 1 = center on screen, 0 = normal placement
+ * - isfloating: 1 = floating window, 0 = tiled
+ * - monitor: -1 = current monitor, 0+ = specific monitor
+ * 
+ * Use `xprop` and click a window to find its WM_CLASS
+ * ------------------------------------------ */
+
 static const Rule rules[] = {
-    /* xprop(1):
-     *	WM_CLASS(STRING) = instance, class
-     *	WM_NAME(STRING) = title
-     */
-    /* class      instance    title       tags mask     iscentered   isfloating   monitor */
-    { "Gimp",     NULL,       NULL,       0,            0,           1,           -1 },
-    { "Firefox",  NULL,       NULL,       1 << 8,       0,           0,           -1 },
+    /* class         instance    title       tags mask     iscentered   isfloating   monitor */
+    { "Gimp",        NULL,       NULL,       0,            0,           1,           -1 },  // GIMP always floats
+    { "Firefox",     NULL,       NULL,       1 << 8,       0,           0,           -1 },  // Firefox on tag 9
+    { "mpv",         NULL,       NULL,       0,            1,           1,           -1 },  // Media player floats centered
+    { "feh",         NULL,       NULL,       0,            1,           1,           -1 },  // Image viewer floats centered
 };
 
 /* layout(s) */
