@@ -1,6 +1,6 @@
 #!/bin/dash
-
-# Tokyo Night colors for bar
+# Tokyo Night color palette for status bar
+# Source this file to use color variables
 
 black="#1a1b26"
 green="#9ece6a"
