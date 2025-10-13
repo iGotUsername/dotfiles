@@ -23,7 +23,7 @@ A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, 
 
 ## Prerequisites
 
-*   ChadWM must be installed first - Follow the official installation guide: https://github.com/siduck/chadwm#setup
+ChadWM must be installed first - Follow the official installation guide: https://github.com/siduck/chadwm#setup
 
 
 ## Core Components
@@ -46,7 +46,7 @@ A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, 
 
 ## Fonts
 
-*   ttf-jetbrains-mono-nerd
+ttf-jetbrains-mono-nerd
 
 
 ## Installation
@@ -82,13 +82,13 @@ A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, 
 
 ## Usage
 
-*   Deploy Changes:
-    After editing files in ~/dotfiles/, sync them to your system:
-    ./scripts/push
+Deploy Changes:
+After editing files in ~/dotfiles/, sync them to your system: 
+./scripts/push
 
-*   Backup Current Config:
-    Pull your current system configs into the dotfiles directory:
-    ./scripts/pull
+Backup Current Config:
+Pull your current system configs into the dotfiles directory: 
+./scripts/pull
 
 
 ## File Structure
@@ -109,7 +109,7 @@ A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, 
 
 ## Keybindings
 
-*   Should be the same as ChadWM. If not, take a look in config.def.h to edit or remember.
+Should be the same as ChadWM. If not, take a look in config.def.h to edit or remember.
 
 
 ## Troubleshooting
@@ -131,7 +131,7 @@ A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, 
 
 ## Incompatibility issues?
 
-*   These dotfiles are tailored to my specific setup. Minor adjustments may be needed for different systems or ChadWM versions.
+These dotfiles are tailored to my specific setup. Adjustments may be needed for different systems or ChadWM versions.
 
 
 ## Credits
@@ -146,7 +146,7 @@ A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, 
 
 *   Community: Inspiration from countless dotfiles repos and, of cource r/unixporn
 
-If you recognize uncredited work, please open an issue so I can properly attribute it.
+**If you recognize uncredited work, please open an issue so I can properly attribute it.**
 
 
 ## License
