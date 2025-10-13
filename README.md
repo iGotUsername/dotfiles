@@ -69,7 +69,7 @@ Screenshots
     chmod +x scripts/*
     ```
 
-4.  Deploy dotfiles to your system
+4.  Deploy dotfiles to your system (or do manually)
     ```bash
     ./scripts/push
     ```
