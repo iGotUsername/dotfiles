@@ -3,7 +3,7 @@
 A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, custom status bar, and smooth window animations.
 
 > [!NOTE]
-> “These are my personal dotfiles - built for me, shared for anyone who finds them useful.
+> These are my personal dotfiles - built for me, shared for anyone who finds them useful.
 
 ## Screenshots
 
