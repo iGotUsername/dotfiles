@@ -1,16 +1,16 @@
-## iGotUsername's ChadWM Dotfiles
+# iGotUsername's ChadWM Dotfiles
 
 A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, custom status bar, and smooth window animations.
 Screenshots
 
-# Screenshots
+## Screenshots
 
 ![Desktop with Rofi](screenshots/rofi.png)
 ![Desktop rice](screenshots/rice.png)
 ![Editing configs](screenshots/work.png)
 
 
-# Features
+## Features
 
 *   Tokyo Night colorscheme across all components
 *   Custom status bar - RAM · Battery · WiFi · Volume · Time · Date (dash-based, minimal overhead)
@@ -22,11 +22,12 @@ Screenshots
 *   5 workspaces - Clean layout with minimal gaps
 
 
-# Prerequisites
+## Prerequisites
 
-WARNING: ChadWM must be installed first - Follow the official installation guide: https://github.com/siduck/chadwm#setup
-Dependencies
-Core Components
+### WARNING: ChadWM must be installed first - Follow the official installation guide: https://github.com/siduck/chadwm#setup
+
+
+## Core Components
 
 *   chadwm
 *   alacritty
@@ -35,7 +36,7 @@ Core Components
 *   dash
 
 
-# System Utilities
+## System Utilities
 
 *   brightnessctl (Brightness control)
 *   maim (Screenshot capture)
@@ -44,14 +45,14 @@ Core Components
 *   xsetroot (Status bar rendering)
 
 
-# Fonts
+## Fonts
 
 *   ttf-jetbrains-mono-nerd
 
 
-# Installation
+## Installation
 
-WARNING: Backup your existing configs before proceeding! The deployment script will overwrite files without confirmation.
+### WARNING: Backup your existing configs before proceeding! The deployment script will overwrite files without confirmation.
 
 1.  Clone the repository
     git clone https://github.com/iGotUsername/dotfiles ~/dotfiles
@@ -69,7 +70,7 @@ WARNING: Backup your existing configs before proceeding! The deployment script w
     cd ~/.config/chadwm
 
 
-# Usage
+## Usage
 
 *   Deploy Changes:
     After editing files in ~/dotfiles/, sync them to your system:
@@ -80,7 +81,7 @@ WARNING: Backup your existing configs before proceeding! The deployment script w
     ./scripts/pull
 
 
-# File Structure
+## File Structure
 
     ~/dotfiles/
     ├── scripts/
@@ -96,12 +97,12 @@ WARNING: Backup your existing configs before proceeding! The deployment script w
     └── tokyonight (Status bar colors)
 
 
-# Keybindings available in config.def.h
+## Keybindings available in config.def.h
 
 *   Should be the same as ChadWM. If not, take a look in config.def.h for confirmation.
 
 
-# Troubleshooting
+## Troubleshooting
 
 *   Scripts don't work?
 
@@ -120,12 +121,12 @@ WARNING: Backup your existing configs before proceeding! The deployment script w
   Disable animations: comment out animations = true;
 
 
-# Incompatibility issues?
+## Incompatibility issues?
 
 *   These dotfiles are tailored to my specific setup. Minor adjustments may be needed for different systems or ChadWM versions.
 
 
-# Credits
+## Credits
 
 *   ChadWM: Based on siduck's chadwm (https://github.com/siduck/chadwm)
 
@@ -141,4 +142,4 @@ If you recognize uncredited work, please open an issue so I can properly attribu
 License
 
 
-# MIT License - Feel free to use and modify as you wish.
+## MIT License - Feel free to use and modify as you wish.
