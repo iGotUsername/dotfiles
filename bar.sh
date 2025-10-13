@@ -30,7 +30,7 @@ battery() {
     if   [ "$val" -ge 80 ]; then icon=""; col="$blue"
     elif [ "$val" -ge 50 ]; then icon=""; col="$blue"
     elif [ "$val" -ge 30 ]; then icon=""; col="$blue"
-    elif [ "$val" -ge 10 ]; then icon=""; col="$blue"
+    elif [ "$val" -ge 11 ]; then icon=""; col="$blue"
     else                        icon=""; col="$red"
     fi
   fi
