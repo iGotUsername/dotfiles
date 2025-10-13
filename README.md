@@ -24,7 +24,7 @@ Screenshots
 
 ## Prerequisites
 
-### WARNING: ChadWM must be installed first - Follow the official installation guide: https://github.com/siduck/chadwm#setup
+**WARNING:** ChadWM must be installed first - Follow the official installation guide: https://github.com/siduck/chadwm#setup
 
 
 ## Core Components
@@ -52,7 +52,7 @@ Screenshots
 
 ## Installation
 
-### WARNING: Backup your existing configs before proceeding! The deployment script will overwrite files without confirmation.
+**WARNING:** Backup your existing configs before proceeding! The deployment script will overwrite files without confirmation.
 
 1.  Clone the repository
     git clone https://github.com/iGotUsername/dotfiles ~/dotfiles
