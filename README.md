@@ -1,71 +1,144 @@
-# iGotUsername's ChadWM Dotfiles
+## iGotUsername's ChadWM Dotfiles
 
-Personal [ChadWM](https://github.com/siduck/chadwm) rice featuring Tokyo Night colorscheme with custom status bar and window animations.
+A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, custom status bar, and smooth window animations.
+Screenshots
 
+# Screenshots
 
-## Features
-
-- **Tokyo Night** theme across all components
-- Custom **dash-based status bar** (RAM · Battery · WiFi · Volume · Time · Date)
-- **Picom** compositor with animations, rounded corners, and shadows
-- **Rofi** application launcher with matching theme
-- **Alacritty** terminal with transparency
-- Hardware key support (brightness, volume control)
-- Screenshot utilities (fullscreen & selection)
-- 5 workspace setup with minimal gaps
+![Desktop with Rofi](screenshots/rofi.png)
+![Desktop rice](screenshots/rice.png)
+![Editing configs](screenshots/work.png)
 
 
-## Core Dependencies
+# Features
 
-- chadwm
-- alacritty
-- rofi
-- picom
-- dash
-
-
-## Utilities
-
-- `brightnessctl` - Brightness control
-- `maim` - Screenshots
-- `xclip` - Clipboard support
-- `wireplumber` - Audio control (wpctl)
-- `xsetroot` - Status bar rendering
+*   Tokyo Night colorscheme across all components
+*   Custom status bar - RAM · Battery · WiFi · Volume · Time · Date (dash-based, minimal overhead)
+*   Picom compositor - Smooth animations, rounded corners, and elegant shadows
+*   Rofi launcher - Fast application menu with matching theme
+*   Alacritty terminal - GPU-accelerated with transparency support
+*   Hardware keys - Brightness and volume controls (laptop-friendly)
+*   Screenshot utilities - Fullscreen and selection capture to clipboard
+*   5 workspaces - Clean layout with minimal gaps
 
 
-## Fonts
+# Prerequisites
 
-- ttf-jetbrains-mono-nerd
+WARNING: ChadWM must be installed first - Follow the official installation guide: https://github.com/siduck/chadwm#setup
+Dependencies
+Core Components
 
-
-## Install
-
-1. git clone https://github.com/iGotUsername/dotfiles ~/
-2. cd ~/dotfiles
-3. chmod +x scripts/*
-4. ./scripts/push (or move manually)
-5. Recompile chadwm
-
-
-## Usage
-
-Deploy changes in dotfiles with
-- ./scripts/push
-
-Backup current config installed with
-- ./scripts/pull
+*   chadwm
+*   alacritty
+*   rofi
+*   picom
+*   dash
 
 
-## Credits
+# System Utilities
 
-- **ChadWM**: Based on [siduck's chadwm](https://github.com/siduck/chadwm)
-- **Tokyo Night Theme**: Color scheme by [tokyo-night](https://github.com/enkia/tokyo-night-vscode-theme)
-- **Documentation**: README structure and configuration explanations created with assistance from Claude (Anthropic)
-- **Code**: Significant portions generated with AI assistance (Claude Sonnet 4.5), then reviewed, corrected, tested, and validated by me
-- **Additional Sources**: This project may incorporate techniques, snippets, or inspiration from other sources not explicitly documented here. If you recognize uncredited work, please contact me.
- 
+*   brightnessctl (Brightness control)
+*   maim (Screenshot capture)
+*   xclip (Clipboard management)
+*   wireplumber (Audio control via wpctl)
+*   xsetroot (Status bar rendering)
 
-## Info
 
-- If you have issues with my scripts, simply edit them to match your file structure.
-- This was made with my exact build in mind, incompatibility is expected.
+# Fonts
+
+*   ttf-jetbrains-mono-nerd
+
+
+# Installation
+
+WARNING: Backup your existing configs before proceeding! The deployment script will overwrite files without confirmation.
+
+1.  Clone the repository
+    git clone https://github.com/iGotUsername/dotfiles ~/dotfiles
+
+2.  Navigate to directory
+    cd ~/dotfiles
+
+3.  Make scripts executable
+    chmod +x scripts/*
+
+4.  Deploy dotfiles to your system
+    ./scripts/push
+
+5.  Recompile ChadWM
+    cd ~/.config/chadwm
+
+
+# Usage
+
+*   Deploy Changes:
+    After editing files in ~/dotfiles/, sync them to your system:
+    ./scripts/push
+
+*   Backup Current Config:
+    Pull your current system configs into the dotfiles directory:
+    ./scripts/pull
+
+
+# File Structure
+
+    ~/dotfiles/
+    ├── scripts/
+    │ ├── push (Deploy dotfiles to system)
+    │ └── pull (Backup system to dotfiles)
+    ├── config.def.h (DWM window manager configuration)
+    ├── picom.conf (Compositor settings - animations, shadows)
+    ├── alacritty.toml (Terminal emulator config)
+    ├── config.rasi (Rofi launcher theme)
+    ├── bar.sh (Status bar script)
+    ├── run.sh (DWM startup script)
+    ├── tokyonight.h (DWM color definitions)
+    └── tokyonight (Status bar colors)
+
+
+# Keybindings available in config.def.h
+
+*   Should be the same as ChadWM. If not, take a look in config.def.h for confirmation.
+
+
+# Troubleshooting
+
+*   Scripts don't work?
+
+- Ensure paths in scripts/push and scripts/pull match your file structure
+  Check script permissions: chmod +x scripts/*
+
+*   Status bar not showing?
+
+- Verify dash is installed: which dash
+  Check bar.sh has execute permissions
+  Ensure required utilities are installed (see Dependencies)
+
+*   Picom animations laggy?
+
+- Your GPU may not support the features. Maybe try another backend in picom.conf
+  Disable animations: comment out animations = true;
+
+
+# Incompatibility issues?
+
+*   These dotfiles are tailored to my specific setup. Minor adjustments may be needed for different systems or ChadWM versions.
+
+
+# Credits
+
+*   ChadWM: Based on siduck's chadwm (https://github.com/siduck/chadwm)
+
+*   Tokyo Night Theme: Color scheme by enkia (https://github.com/enkia/tokyo-night-vscode-theme)
+
+*   Documentation: README structure created with assistance from Claude (Anthropic)
+
+*   Code: Significant portions generated with AI assistance (Claude Sonnet 4.5), then reviewed, tested, and validated by me
+
+*   Community: Inspiration from countless dotfiles repos and r/unixporn
+
+If you recognize uncredited work, please open an issue so I can properly attribute it.
+License
+
+
+# MIT License - Feel free to use and modify as you wish.
