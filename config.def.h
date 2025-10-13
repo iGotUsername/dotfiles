@@ -21,7 +21,7 @@ static const unsigned int systraypinning = 0;   /* 0 = follow selected monitor, 
 static const unsigned int systrayspacing = 8;   /* Space between tray icons */
 static const unsigned int systrayiconsize = 20; /* Tray icon size in pixels */
 static const int systraypinningfailfirst = 1;   /* 1 = fallback to first monitor, 0 = last monitor */
-static const int showsystray        = 1;        /* 0 = hide systray */
+static const int showsystray        = 0;        /* 0 = hide systray */
 
 /* Status Bar */
 static const int showbar            = 1;        /* 0 = hide bar */
