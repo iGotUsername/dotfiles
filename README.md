@@ -139,7 +139,8 @@ Screenshots
 *   Community: Inspiration from countless dotfiles repos and r/unixporn
 
 If you recognize uncredited work, please open an issue so I can properly attribute it.
-License
 
 
-## MIT License - Feel free to use and modify as you wish.
+## License
+
+*MIT License - Feel free to use and modify as you wish.*
