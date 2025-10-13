@@ -110,22 +110,22 @@ Screenshots
 
 ## Keybindings available in config.def.h
 
-*   Should be the same as ChadWM. If not, take a look in config.def.h for confirmation.
+*   Should be the same as ChadWM. If not, take a look in config.def.h to edit or remember.
 
 
 ## Troubleshooting
 
-*   Scripts don't work?\n
+*   Scripts don't work?  
     Ensure paths in scripts/push and scripts/pull match your file structure
     Check script permissions: chmod +x scripts/*
 
 
-*   Status bar not showing?\n
+*   Status bar not showing?  
     Verify dash is installed: which dash
     Check bar.sh has execute permissions
     Ensure required utilities are installed (see Dependencies)
 
-*   Picom animations laggy?\n
+*   Picom animations laggy?  
     Your GPU may not support the features. Maybe try another backend in picom.conf
     Disable animations: comment out animations = true; 
 
@@ -141,11 +141,11 @@ Screenshots
 
 *   Tokyo Night Theme: Color scheme by enkia (https://github.com/enkia/tokyo-night-vscode-theme)
 
-*   Documentation: README structure created with assistance from Claude (Anthropic)
+*   Documentation: README structure created with assistance from AI
 
-*   Code: Significant portions generated with AI assistance (Claude Sonnet 4.5), then reviewed, tested, and validated by me
+*   Code: Some portions has been generated with AI assistance, then reviewed, tested, and validated by me
 
-*   Community: Inspiration from countless dotfiles repos and r/unixporn
+*   Community: Inspiration from countless dotfiles repos and, of cource r/unixporn
 
 If you recognize uncredited work, please open an issue so I can properly attribute it.
 
