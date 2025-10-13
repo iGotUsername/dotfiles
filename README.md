@@ -55,19 +55,29 @@ Screenshots
 **WARNING:** Backup your existing configs before proceeding! The deployment script will overwrite files without confirmation.
 
 1.  Clone the repository
+    ```bash
     git clone https://github.com/iGotUsername/dotfiles ~/dotfiles
+    ```
 
 2.  Navigate to directory
+    ```bash
     cd ~/dotfiles
+    ```
 
 3.  Make scripts executable
+    ```bash
     chmod +x scripts/*
+    ```
 
 4.  Deploy dotfiles to your system
+    ```bash
     ./scripts/push
+    ```
 
 5.  Recompile ChadWM
+    ```bash
     cd ~/.config/chadwm
+    ```
 
 
 ## Usage
