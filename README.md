@@ -107,26 +107,26 @@ A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, 
     └── tokyonight (Status bar colors)
 
 
-## Keybindings available in config.def.h
+## Keybindings
 
 *   Should be the same as ChadWM. If not, take a look in config.def.h to edit or remember.
 
 
 ## Troubleshooting
 
-*Scripts don't work?*
-*   Ensure paths in scripts/push and scripts/pull match your file structure
-*   Check script permissions: chmod +x scripts/*
+### *Scripts don't work?*
+1.  Ensure paths in scripts/push and scripts/pull match your file structure
+2.  Check script permissions: chmod +x scripts/*
 
 
-*Status bar not showing?*
-*   Verify dash is installed: which dash
-*   Check bar.sh has execute permissions
-*   Ensure required utilities are installed (see Dependencies)
+### *Status bar not showing?*
+1.  Verify dash is installed: which dash
+2.  Check bar.sh has execute permissions
+3.  Ensure required utilities are installed (see Dependencies)
 
-*Picom animations laggy?*
-*   Your GPU may not support the features. Maybe try another backend in picom.conf
-*   Disable animations: comment out animations = true; 
+### *Picom animations laggy?*
+1.  Your GPU may not support the features. Maybe try another backend in picom.conf
+2.  Disable animations: comment out animations = true; 
 
 
 ## Incompatibility issues?
