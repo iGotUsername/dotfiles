@@ -2,14 +2,14 @@
 
 # Pushes files from dotfiles to their home
 
-cp /home/herminator/dotfiles/.xinitrc /home/herminator/ && \
-cp /home/herminator/dotfiles/alacritty.toml /home/herminator/.config/alacritty/ && \
-cp /home/herminator/dotfiles/config.def.h /home/herminator/.config/chadwm/chadwm/ && \
-cp /home/herminator/dotfiles/tokyonight.h /home/herminator/.config/chadwm/chadwm/themes/ && \
-cp /home/herminator/dotfiles/bar.sh /home/herminator/.config/chadwm/scripts/ && \
-cp /home/herminator/dotfiles/run.sh /home/herminator/.config/chadwm/scripts/ && \
-cp /home/herminator/dotfiles/tokyonight /home/herminator/.config/chadwm/scripts/bar_themes/ && \
-cp /home/herminator/dotfiles/config.rasi /home/herminator/.config/rofi/ && \
-cp /home/herminator/dotfiles/picom.conf /home/herminator/.config/picom/
+cp "$HOME/dotfiles/.xinitrc" "$HOME/" && \
+cp "$HOME/dotfiles/alacritty.toml" "$HOME/.config/alacritty/" && \
+cp "$HOME/dotfiles/config.def.h" "$HOME/.config/chadwm/chadwm/" && \
+cp "$HOME/dotfiles/tokyonight.h" "$HOME/.config/chadwm/chadwm/themes/" && \
+cp "$HOME/dotfiles/bar.sh" "$HOME/.config/chadwm/scripts/" && \
+cp "$HOME/dotfiles/run.sh" "$HOME/.config/chadwm/scripts/" && \
+cp "$HOME/dotfiles/tokyonight" "$HOME/.config/chadwm/scripts/bar_themes/" && \
+cp "$HOME/dotfiles/config.rasi" "$HOME/.config/rofi/" && \
+cp "$HOME/dotfiles/picom.conf" "$HOME/.config/picom/"
 
-echo "Dotfiles restored successfully!"
+echo "Dotfiles successfully pushed!"
