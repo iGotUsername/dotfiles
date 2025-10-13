@@ -115,20 +115,19 @@ Screenshots
 ## Troubleshooting
 
 *   Scripts don't work?
+    Ensure paths in scripts/push and scripts/pull match your file structure
+    Check script permissions: chmod +x scripts/*
 
-- Ensure paths in scripts/push and scripts/pull match your file structure
-  Check script permissions: chmod +x scripts/*
 
 *   Status bar not showing?
+    Verify dash is installed: which dash
+    Check bar.sh has execute permissions
+    Ensure required utilities are installed (see Dependencies)
 
-- Verify dash is installed: which dash
-  Check bar.sh has execute permissions
-  Ensure required utilities are installed (see Dependencies)
 
 *   Picom animations laggy?
-
-- Your GPU may not support the features. Maybe try another backend in picom.conf
-  Disable animations: comment out animations = true;
+    Your GPU may not support the features. Maybe try another backend in picom.conf
+    Disable animations: comment out animations = true; 
 
 
 ## Incompatibility issues?
