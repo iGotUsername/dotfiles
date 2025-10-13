@@ -1,8 +1,17 @@
+# ~/.config/chadwm/scripts/run.sh
 #!/bin/sh
-# DWM startup script - launches compositor and status bar
+set -eu
 
-xrdb merge ~/.Xresources          # Load X resources (fonts, colors, etc.)
-xset r rate 200 50 &              # Set keyboard repeat rate (200ms delay, 50/sec)
-dash ~/.config/chadwm/scripts/bar.sh &  # Launch status bar script
-picom -b --config ~/.config/picom/picom.conf & # Launch picom compositor
-while type chadwm >/dev/null; do chadwm && continue || break; done  # Restart DWM on crash
+[ -f "$HOME/.Xresources" ] && xrdb -merge "$HOME/.Xresources"
+xset r rate 200 50 &
+
+# Launch bar and picom
+"$HOME/.config/chadwm/scripts/bar.sh" & bar_pid=$!
+trap 'kill "$bar_pid" 2>/dev/null || true' EXIT
+
+picom -b --config "$HOME/.config/picom/picom.conf"
+
+# Restart loop (quiet)
+while command -v chadwm >/dev/null 2>&1; do
+  chadwm && break || sleep 1
+done

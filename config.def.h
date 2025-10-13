@@ -116,7 +116,7 @@ static const int ulineall               = 0;  /* 1 = underline all tags, 0 = act
 static const Rule rules[] = {
     /* class         instance    title       tags mask     centered   floating   monitor */
     { "Gimp",        NULL,       NULL,       0,            0,         1,         -1 },
-    { "Firefox",     NULL,       NULL,       1 << 8,       0,         0,         -1 },
+    { "Firefox",     NULL,       NULL,       1 << 2,       0,         0,         -1 },
     { "mpv",         NULL,       NULL,       0,            1,         1,         -1 },
     { "feh",         NULL,       NULL,       0,            1,         1,         -1 },
 };
@@ -259,7 +259,7 @@ static const Key keys[] = {
     { MODKEY|ShiftMask, XK_w,     setborderpx, {.i = default_border } }, /* Reset border */
 
     /* System Controls */
-    { MODKEY|ControlMask, XK_q, spawn,   SHCMD("killall bar.sh chadwm") },  /* Quit DWM */
+    { MODKEY|ControlMask, XK_q, spawn, SHCMD("killall bar.sh chadwm") },     /* Quit DWM */
     { MODKEY,             XK_q, killclient, {0} },                           /* Close window */
     { MODKEY|ShiftMask,   XK_r, restart,    {0} },                           /* Restart DWM */
 
@@ -288,7 +288,7 @@ static const Button buttons[] = {
     { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
     { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
     { ClkWinTitle,          0,              Button2,        zoom,           {0} },
-    { ClkStatusText,        0,              Button2,        spawn,          SHCMD("st") },
+    { ClkStatusText,        0,              Button2,        spawn,          SHCMD("alacritty") },
 
     /* Window Dragging/Resizing
      * placemouse modes:
