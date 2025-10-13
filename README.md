@@ -52,7 +52,8 @@ Screenshots
 
 ## Installation
 
-**WARNING:** Backup your existing configs before proceeding! The deployment script will overwrite files without confirmation.
+> [!WARNING]
+> You should backup your existing configs before proceeding! The deployment script will overwrite files without confirmation.
 
 1.  Clone the repository
     ```bash
@@ -114,21 +115,19 @@ Screenshots
 
 ## Troubleshooting
 
-> [!TIP]
-> *   Scripts don't work?
->     Ensure paths in scripts/push and scripts/pull match your file structure
->     Check script permissions: chmod +x scripts/*
+*   Scripts don't work?\n
+    Ensure paths in scripts/push and scripts/pull match your file structure
+    Check script permissions: chmod +x scripts/*
 
-> [!TIP]
->*   Status bar not showing?
->    Verify dash is installed: which dash
->    Check bar.sh has execute permissions
->    Ensure required utilities are installed (see Dependencies)
 
-> [!TIP]
->*   Picom animations laggy?
->    Your GPU may not support the features. Maybe try another backend in picom.conf
->    Disable animations: comment out animations = true; 
+*   Status bar not showing?\n
+    Verify dash is installed: which dash
+    Check bar.sh has execute permissions
+    Ensure required utilities are installed (see Dependencies)
+
+*   Picom animations laggy?\n
+    Your GPU may not support the features. Maybe try another backend in picom.conf
+    Disable animations: comment out animations = true; 
 
 
 ## Incompatibility issues?
