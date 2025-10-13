@@ -55,7 +55,7 @@ ttf-jetbrains-mono-nerd
 ## Installation
 
 > [!WARNING]
-> You should backup your existing configs before proceeding! The deployment script will overwrite files without confirmation.
+> Beware, you should backup your existing configs before proceeding! The deployment script will overwrite files without warning.
 
 1.  Clone the repository
     ```bash
@@ -91,8 +91,8 @@ Push configs from ~/dotfiles directory into your system configuration files: ./s
 Pull files:
 Pull your current system configuration files into your ~/dotfiles directory: ./scripts/pull
 
-> [!NOTE]
-> Running the *pull* script will overwrite all the configuration files in your ~/dotfiles directory
+> [!WARNING]
+> Beware, running the *pull* script will overwrite the configuration files in your ~/dotfiles directory without warning.
 
 ## File Structure
 
@@ -112,7 +112,7 @@ Pull your current system configuration files into your ~/dotfiles directory: ./s
 
 ## Keybindings
 
-Should be the same as ChadWM. If not, take a look in config.def.h to edit or remember.
+Should be the same as ChadWM. If not, take a look in config.def.h to configure.
 
 
 ## Troubleshooting
