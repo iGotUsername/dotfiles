@@ -82,14 +82,14 @@ ttf-jetbrains-mono-nerd
 
 ## Usage
 
-Deploy Changes:
-After editing files in ~/dotfiles/, sync them to your system: 
-./scripts/push
+Push files:
+Push configs from ~/dotfiles directory into your system configuration files: ./scrips/push
 
-Backup Current Config:
-Pull your current system configs into the dotfiles directory: 
-./scripts/pull
+Pull files:
+Pull your current system configuration files into your ~/dotfiles directory: ./scripts/pull
 
+> [!NOTE]
+> Running the *pull* script will overwrite all the configuration files in your ~/dotfiles directory
 
 ## File Structure
 
@@ -129,9 +129,8 @@ Should be the same as ChadWM. If not, take a look in config.def.h to edit or rem
 2.  Disable animations: comment out animations = true; 
 
 
-## Incompatibility issues?
-
-These dotfiles are tailored to my specific setup. Adjustments may be needed for different systems or ChadWM versions.
+**Incompatibility issues?**
+1.  These dotfiles are tailored to my specific setup. Adjustments may be needed for different systems or ChadWM versions.
 
 
 ## Credits
