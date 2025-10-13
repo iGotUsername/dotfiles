@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Restore dotfiles from backup
+# Pushes files from dotfiles to their home
 
 cp /home/herminator/dotfiles/.xinitrc /home/herminator/ && \
 cp /home/herminator/dotfiles/alacritty.toml /home/herminator/.config/alacritty/ && \
