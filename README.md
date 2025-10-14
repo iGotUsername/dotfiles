@@ -146,7 +146,7 @@ Should be the same as ChadWM. If not, take a look in config.def.h to configure.
 
 *   Code: Some portions has been generated with AI assistance, then reviewed, tested, and validated by me
 
-*   Community: Inspiration from countless dotfiles repos and, of cource r/unixporn
+*   Community: Inspiration from countless dotfiles repos and, of course r/unixporn
 
 **If you recognize uncredited work, please open an issue so I can properly attribute it.**
 
