@@ -25,7 +25,7 @@ battery() {
   # Icon and color based on state
   icon=""; col="$red"
   if [ "$charging" -eq 1 ]; then
-    icon="󱐋"; col="$green"
+    icon="󱐋"; col="$blue"
   else
     if   [ "$val" -ge 80 ]; then icon=""; col="$blue"
     elif [ "$val" -ge 50 ]; then icon=""; col="$blue"
