@@ -1,6 +1,7 @@
 #!/bin/sh
 
 pipewire &
+sleep 0.5
 wireplumber &
 pipewire-pulse &
 xset s off
