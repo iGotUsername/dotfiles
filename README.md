@@ -5,8 +5,10 @@ A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, 
 > [!NOTE]
 > These are my personal dotfiles - built for me, shared for anyone who finds them useful.
 
+
 > [!NOTE]
 > Archived
+
 
 ## Screenshots
 
