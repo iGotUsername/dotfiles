@@ -1,6 +1,6 @@
 # iGotUsername's ChadWM Dotfiles
 
-A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, custom status bar, and smooth window animations.
+A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, custom status bar, and smooth window animations. (Archived now)
 
 > [!NOTE]
 > These are my personal dotfiles - built for me, shared for anyone who finds them useful.
@@ -158,7 +158,3 @@ Should be the same as ChadWM. If not, take a look in config.def.h to configure.
 ## License
 
 *MIT License - Feel free to use and modify as you wish.*
-
-
-> [!NOTE]
-> Archived
