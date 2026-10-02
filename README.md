@@ -154,10 +154,11 @@ Should be the same as ChadWM. If not, take a look in config.def.h to configure.
 
 
 
-> [!NOTE]
-> Archived
-
 
 ## License
 
 *MIT License - Feel free to use and modify as you wish.*
+
+
+> [!NOTE]
+> Archived
