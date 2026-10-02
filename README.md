@@ -6,9 +6,6 @@ A clean, minimalist ChadWM configuration featuring the Tokyo Night colorscheme, 
 > These are my personal dotfiles - built for me, shared for anyone who finds them useful.
 
 
-> [!NOTE]
-> Archived
-
 
 ## Screenshots
 
@@ -154,6 +151,11 @@ Should be the same as ChadWM. If not, take a look in config.def.h to configure.
 *   Community: Inspiration from countless dotfiles repos and, of course r/unixporn
 
 **If you recognize uncredited work, please open an issue so I can properly attribute it.**
+
+
+
+> [!NOTE]
+> Archived
 
 
 ## License
